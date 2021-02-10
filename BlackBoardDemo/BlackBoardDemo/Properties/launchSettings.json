@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BlackBoardDemo": {
+      "commandName": "Project",
+      "commandLineArgs": "20"
+    }
+  }
+}
