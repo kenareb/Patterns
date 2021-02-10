@@ -3,6 +3,10 @@
     using Analyzers;
     using System;
 
+    /// <summary>
+    /// This mergesort implementation uses a blackboard and a knowledgebase. The knowledgebase has
+    /// solvers for splitting, merging and sorting.
+    /// </summary>
     public class MergeSort
     {
         public int[] Sort(int[] input)
@@ -30,4 +34,3 @@
         }
     }
 }
-
