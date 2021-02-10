@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace BlackBoardDemo
+﻿namespace BlackBoardDemo
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// The blackboard summarizes the problem and the current state of the solution for this
     /// problem. It may hold a set of partial problems, which in total represent the input problem.

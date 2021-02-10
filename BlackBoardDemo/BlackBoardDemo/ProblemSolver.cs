@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace BlackBoardDemo
+﻿namespace BlackBoardDemo
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// A problem solver is capable of applying operations to the data of a problem in a way that
     /// the state of the problem gets solved.

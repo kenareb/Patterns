@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace BlackBoardDemo
+﻿namespace BlackBoardDemo
 {
+    using System;
+
     /// <summary>
     /// The analyzer is capable of analyzing a specific aspect of a problem and determine, if the problem
     /// is solved regarding the alayzed aspect.

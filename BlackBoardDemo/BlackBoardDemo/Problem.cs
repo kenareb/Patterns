@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace BlackBoardDemo
+﻿namespace BlackBoardDemo
 {
     /// <summary>
     /// A problem is a set of data, which is in a specific state. When the problem is solved, the

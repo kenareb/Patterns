@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace BlackBoardDemo
+﻿namespace BlackBoardDemo
 {
     /// <summary>
     /// A set of problem states.

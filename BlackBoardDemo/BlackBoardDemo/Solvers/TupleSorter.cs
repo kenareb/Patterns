@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlackBoardDemo.Solvers
+﻿namespace BlackBoardDemo.Solvers
 {
-    public class Sorter : ProblemSolver
+    using System.Collections.Generic;
+
+    public class TupleSorter : ProblemSolver
     {
         public override bool CanSolve(Problem input)
         {

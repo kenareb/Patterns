@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace BlackBoardDemo
+﻿namespace BlackBoardDemo
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// A knowledgebase contains a set of solvers for specific problems. Depending on the type of
     /// problem, a solver can be chosen to solve a problem.

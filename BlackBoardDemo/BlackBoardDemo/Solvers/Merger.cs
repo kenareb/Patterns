@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlackBoardDemo.Solvers
+﻿namespace BlackBoardDemo.Solvers
 {
+    using System;
+    using System.Collections.Generic;
+
     public class Merger : ProblemSolver
     {
         public override bool CanSolve(Problem input)
@@ -75,9 +72,7 @@ namespace BlackBoardDemo.Solvers
 
                     result.Data = target;
                     result.State = ProblemState.Solved;
-
                 }
-
             }
 
             return new[] { result };
