@@ -1,8 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BlackBoardDemo;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BlackBoardDemo.Tests
 {
@@ -18,7 +15,7 @@ namespace BlackBoardDemo.Tests
             var mergeSort = new MergeSort();
             var actual = mergeSort.Sort(input);
 
-            for(int i = 0; i < input.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
                 Assert.AreEqual(expected[i], actual[i]);
             }
@@ -38,7 +35,7 @@ namespace BlackBoardDemo.Tests
                 Assert.AreEqual(expected[i], actual[i]);
             }
         }
-        
+
         [TestMethod()]
         public void SortTest3()
         {
