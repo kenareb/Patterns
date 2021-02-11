@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BlackBoardDemo.BlackBoard">
+    <Position X="1.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAEAAAAAAAAAAAABAAAAQBAAAAAAAAA=</HashCode>
+      <FileName>BlackBoard.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProblemAnalyzer" />
+      <Property Name="InputProblem" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BlackBoardDemo.Controller">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <AssociationLine Name="_blackBoard" Type="BlackBoardDemo.BlackBoard" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.938" Y="1.796" />
+        <Point X="4.938" Y="3.07" />
+        <Point X="2.75" Y="3.07" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="_knowlegdeBase" Type="BlackBoardDemo.KnowledgeBase" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.672" Y="1.796" />
+        <Point X="5.672" Y="2.943" />
+        <Point X="7.25" Y="2.943" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.152" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controller.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_blackBoard" />
+      <Field Name="_knowlegdeBase" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BlackBoardDemo.Problem" Collapsed="true">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAABAAAAAA=</HashCode>
+      <FileName>Problem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlackBoardDemo.ProblemSolver" Collapsed="true">
+    <Position X="7.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>ProblemSolver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlackBoardDemo.Analyzer" Collapsed="true">
+    <Position X="1.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Analyzer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlackBoardDemo.Solvers.Merger" Collapsed="true">
+    <Position X="4" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Solvers\Merger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlackBoardDemo.Solvers.Splitter" Collapsed="true">
+    <Position X="8.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Solvers\Splitter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlackBoardDemo.Solvers.TupleSorter" Collapsed="true">
+    <Position X="6.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Solvers\TupleSorter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlackBoardDemo.Analyzers.SortAnalyzer" Collapsed="true">
+    <Position X="1.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Analyzers\SortAnalyzer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlackBoardDemo.KnowledgeBase">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>KnowledgeBase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ProblemSolvers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
