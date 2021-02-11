@@ -18,20 +18,19 @@
         public Problem InputProblem { get; set; }
 
         /// <summary>
-        /// Gets or sets the current solution.
+        /// Gets or sets the solved problem.
         /// </summary>
         /// <value>
-        /// The current solution.
+        /// The solved problem, or finally the solution of the input problem.
         /// </value>
-        public Problem CurrentSolution { get; set; }
+        public Problem SolvedProblem { get; set; }
 
         /// <summary>
-        /// Gets or sets the partial solutions.
+        /// Gets or sets the sub problems. The total of all solved sub problems forms the solution
+        /// of the input problem.
         /// </summary>
-        /// <value>
-        /// The partial solutions.
-        /// </value>
-        public List<Problem> PartialSolutions { get; set; } = new List<Problem>();
+        /// <value>The list for the sub problems.</value>
+        public List<Problem> SubProblems { get; set; } = new List<Problem>();
 
         /// <summary>
         /// Gets or sets the problem analyzer.
@@ -46,12 +45,12 @@
         /// </summary>
         public void Analyze()
         {
-            if (CurrentSolution != null)
+            if (SolvedProblem != null)
             {
-                CurrentSolution.State = ProblemAnalyzer.Analyze(CurrentSolution);
+                SolvedProblem.State = ProblemAnalyzer.Analyze(SolvedProblem);
             }
 
-            foreach (var solutionPart in PartialSolutions)
+            foreach (var solutionPart in SubProblems)
             {
                 if (solutionPart.State == ProblemState.Solved)
                 {

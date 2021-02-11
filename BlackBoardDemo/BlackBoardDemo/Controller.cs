@@ -22,20 +22,20 @@
 
         public void Run()
         {
-            // At start, we don't have any partial solutions. So we'll push our input problem to the
-            // partial solutions.
-            if (!_blackBoard.PartialSolutions.Any())
+            // At start, we don't have any sub problems. So we'll push our input problem to the
+            // list of the sub problems.
+            if (!_blackBoard.SubProblems.Any())
             {
-                _blackBoard.PartialSolutions.Insert(0, _blackBoard.InputProblem);
+                _blackBoard.SubProblems.Insert(0, _blackBoard.InputProblem);
             }
 
-            // As long as we have unsolved partial solution, we'll try to use the knowledgebase to
-            // solve the partial solutions.
-            while (_blackBoard.PartialSolutions.Any(p => p.State != ProblemState.Solved))
+            // As long as we have unsolved sub problems, we'll try to use the knowledgebase to
+            // solve the sub problems.
+            while (_blackBoard.SubProblems.Any(p => p.State != ProblemState.Solved))
             {
-                // Get the first unsolved part:
-                var p = _blackBoard.PartialSolutions.First(p => p.State != ProblemState.Solved);
-                _blackBoard.PartialSolutions.Remove(p);
+                // Get the first unsolved problem:
+                var p = _blackBoard.SubProblems.First(p => p.State != ProblemState.Solved);
+                _blackBoard.SubProblems.Remove(p);
 
                 // Find a solver:
                 var solver = _knowlegdeBase.FindSolverFor(p);
@@ -44,20 +44,20 @@
                 var solutionParts = solver.Solve(p);
 
                 // Store the transformed problem/solution on the blackboard:
-                _blackBoard.PartialSolutions.InsertRange(0, solutionParts);
+                _blackBoard.SubProblems.InsertRange(0, solutionParts);
 
-                // Let the blackboard decide, if the partial solution is solved:
+                // Let the blackboard decide, if the sub problem is solved:
                 _blackBoard.Analyze();
             }
 
-            // At this point all partial problems/solutionss are solved. Now we need to combine all
-            // parts to form the solution for the input problem. So we're starting with an initial,
-            // empty problem and combine the other parts with it.
+            // At this point all sub problems are solved (partial solutions). Now we need to combine
+            // all parts to form the final solution for the input problem. So we're starting with an
+            // initial, empty problem and combine the other parts with it.
             var result = new Problem() { Data = new int[0], State = ProblemState.Solved };
-            foreach (var part in _blackBoard.PartialSolutions)
+            foreach (var part in _blackBoard.SubProblems)
             {
-                // Create a new problem containing the two partial problems and let the
-                // knowledgebase decide, how to combine both to a single problem/solution
+                // Create a new problem containing the two partial solutions and let the
+                // knowledgebase decide, how to combine both to a single solution.
                 var problem = new Problem()
                 {
                     Data = new Tuple<Problem, Problem>(result, part),
@@ -69,10 +69,10 @@
                 result = solver.Solve(problem).Single();
             }
 
-            // When reaching this point, all solved sub-problems have been combined into a single,
+            // When reaching this point, all solved sub problems have been combined into a single,
             // solved solution. So we're putting this solution onto the blackboard and let the
             // blackboard decide, whether or not our problem is solved:
-            _blackBoard.CurrentSolution = result;
+            _blackBoard.SolvedProblem = result;
             _blackBoard.Analyze();
         }
     }

@@ -34,7 +34,7 @@
             // Start solving problems:
             controller.Run();
 
-            return blackBoard.CurrentSolution.Data as int[];
+            return blackBoard.SolvedProblem.Data as int[];
         }
     }
 }
