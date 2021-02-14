@@ -3,8 +3,20 @@
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// The <c>Merger</c> knows how to merge two instances of a sorting problem into a single <see cref="Problem"/>.
+    /// The merger expects the data to be sorted.
+    /// </summary>
+    /// <seealso cref="BlackBoardDemo.ProblemSolver" />
     public class Merger : ProblemSolver
     {
+        /// <summary>
+        /// Determines whether this instance can solve the specified input problem.
+        /// </summary>
+        /// <param name="input">The input problem.</param>
+        /// <returns>
+        /// <c>true</c> if this instance can solve the specified input problem; otherwise, <c>false</c>.
+        /// </returns>
         public override bool CanSolve(Problem input)
         {
             if (input.State == ProblemState.NeedsIntegration && input.Data is Tuple<Problem, Problem>)
@@ -13,6 +25,16 @@
             return false;
         }
 
+        /// <summary>
+        /// Solves the specified input problem.
+        /// </summary>
+        /// <param name="input">
+        /// The input problem. Must be a problem containing a tuple of problem in the <c>Data</c> property.
+        /// </param>
+        /// <returns>
+        /// A <see cref="Problem"/> enumeration containing a single item with the merged data of the
+        /// input problem.
+        /// </returns>
         public override IEnumerable<Problem> Solve(Problem input)
         {
             var t = input.Data as Tuple<Problem, Problem>;

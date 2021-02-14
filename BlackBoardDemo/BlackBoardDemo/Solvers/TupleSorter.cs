@@ -2,8 +2,19 @@
 {
     using System.Collections.Generic;
 
+    /// <summary>
+    /// The <c>TupleSorter</c> is capable of putting two integers into the correct sorting order.
+    /// </summary>
+    /// <seealso cref="BlackBoardDemo.ProblemSolver" />
     public class TupleSorter : ProblemSolver
     {
+        /// <summary>
+        /// Determines whether this instance can solve the specified input problem.
+        /// </summary>
+        /// <param name="input">The input problem.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can solve the specified input problem; otherwise, <c>false</c>.
+        /// </returns>
         public override bool CanSolve(Problem input)
         {
             if (input.State == ProblemState.NeedsSorting && input.Data is int[])
@@ -12,6 +23,11 @@
             return false;
         }
 
+        /// <summary>
+        /// Solves the specified input problem. The input must contain an array with two integers.
+        /// </summary>
+        /// <param name="input">The input problem.</param>
+        /// <returns>A problem enumeration containing a single problem. The problem data will be a sorted array.</returns>
         public override IEnumerable<Problem> Solve(Problem input)
         {
             var data = input.Data as int[];

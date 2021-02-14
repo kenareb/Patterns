@@ -1,9 +1,20 @@
-﻿using System;
-
-namespace BlackBoardDemo.Analyzers
+﻿namespace BlackBoardDemo.Analyzers
 {
+    /// <summary>
+    /// The <c>SortAnalyzer</c> is caplable of checking, if the problem data is sorted.
+    /// </summary>
+    /// <seealso cref="BlackBoardDemo.Analyzer" />
     public class SortAnalyzer : Analyzer
     {
+        /// <summary>
+        /// Analyzes the specified problem.
+        /// </summary>
+        /// <param name="problem">The problem.</param>
+        /// <returns>
+        /// <see cref="ProblemState.Solved"/> when the <c>Problem.Data</c> is a sorted array.
+        /// <see cref="ProblemState.NeedsSorting"/> when the <c>Problem.Data</c> is an unsorted array.
+        /// <see cref="ProblemState.UnSolvable"/> otherwise.
+        /// </returns>
         public override ProblemState Analyze(Problem problem)
         {
             var data = problem.Data as int[];
