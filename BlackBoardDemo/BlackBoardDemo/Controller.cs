@@ -53,20 +53,28 @@
             // At this point all sub problems are solved (partial solutions). Now we need to combine
             // all parts to form the final solution for the input problem. So we're starting with an
             // initial, empty problem and combine the other parts with it.
-            var result = new Problem() { Data = new int[0], State = ProblemState.Solved };
-            foreach (var part in _blackBoard.SubProblems)
+            Problem result;
+            if (_blackBoard.SubProblems.Count > 1)
             {
-                // Create a new problem containing the two partial solutions and let the
-                // knowledgebase decide, how to combine both to a single solution.
-                var problem = new Problem()
+                result = new Problem() { Data = null, State = ProblemState.Solved };
+                foreach (var part in _blackBoard.SubProblems)
                 {
-                    Data = new Tuple<Problem, Problem>(result, part),
-                    State = ProblemState.NeedsIntegration
-                };
+                    // Create a new problem containing the two partial solutions and let the
+                    // knowledgebase decide, how to combine both to a single solution.
+                    var problem = new Problem()
+                    {
+                        Data = new Tuple<Problem, Problem>(result, part),
+                        State = ProblemState.NeedsIntegration
+                    };
 
-                // Get a solver from knowledgebase:
-                var solver = _knowlegdeBase.FindSolverFor(problem);
-                result = solver.Solve(problem).Single();
+                    // Get a solver from knowledgebase:
+                    var solver = _knowlegdeBase.FindSolverFor(problem);
+                    result = solver.Solve(problem).Single();
+                }
+            }
+            else
+            {
+                result = _blackBoard.SubProblems.FirstOrDefault();
             }
 
             // When reaching this point, all solved sub problems have been combined into a single,

@@ -14,7 +14,7 @@
             var kb = new KnowledgeBase();
             kb.ProblemSolvers.Add(new Solvers.Splitter());
             kb.ProblemSolvers.Add(new Solvers.Merger());
-            kb.ProblemSolvers.Add(new Solvers.TupleSorter());
+            kb.ProblemSolvers.Add(new Solvers.Sorter());
 
             // Set up our problem: an unsorted array of integers...
             var problem = new Problem();

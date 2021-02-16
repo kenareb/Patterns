@@ -6,7 +6,7 @@
     /// The <c>TupleSorter</c> is capable of putting two integers into the correct sorting order.
     /// </summary>
     /// <seealso cref="BlackBoardDemo.ProblemSolver" />
-    public class TupleSorter : ProblemSolver
+    public class Sorter : ProblemSolver
     {
         /// <summary>
         /// Determines whether this instance can solve the specified input problem.
