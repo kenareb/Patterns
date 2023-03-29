@@ -1,7 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using System.Web;
-
-namespace CachingDemo
+﻿namespace CachingDemo
 {
     public interface IRepository<TKey, T> where T : class
     {

@@ -1,8 +1,7 @@
-﻿using CachingDemo;
-using System.Runtime.Caching;
-
-namespace CachingDemo
+﻿namespace CachingDemo
 {
+    using System.Runtime.Caching;
+
     public class Cache<TKey, T> : IRepository<TKey, T> where T : class where TKey : notnull
     {
         public enum WriteMode
