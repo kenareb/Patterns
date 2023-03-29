@@ -63,12 +63,12 @@
             repoMock.Reset();
             cacheMock.Reset();
 
-            // Repo.Create must be called once.
+            // Repo.Delete must be called once.
             repoMock
                 .Setup(r => r.Delete(It.IsAny<string>()))
                 .Returns(true);
 
-            // Cache.Add must also be called once to store the data.
+            // Cache.Remove must also be called once to store the data.
             cacheMock
                 .Setup(c => c.Remove(It.IsAny<string>(), null))
                 .Returns(true);
@@ -95,12 +95,12 @@
             repoMock.Reset();
             cacheMock.Reset();
 
-            // Repo.Create must be called once.
+            // Repo.Update must be called once.
             repoMock
                 .Setup(r => r.Update(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(true);
 
-            // Cache.Add must also be called once to store the data.
+            // Cache.Set must also be called once to store the data.
             cacheMock
                 .Setup(c => c.Set(It.IsAny<CacheItem>(), It.IsAny<CacheItemPolicy>()));
 
