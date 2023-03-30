@@ -2,14 +2,14 @@
 {
     using System.Runtime.Caching;
 
+    public enum WriteMode
+    { WriteThrough = 0, WriteBack = 1 };
+
+    public enum ReadMode
+    { CacheAside = 0, ReadThrough = 1 };
+
     public class Cache<TKey, T> : IRepository<TKey, T> where T : class where TKey : notnull
     {
-        public enum WriteMode
-        { WriteThrough = 0, WriteBack = 1 };
-
-        public enum ReadMode
-        { CacheAside = 0, ReadThrough = 1 };
-
         private IRepository<TKey, T> _repo;
         private ObjectCache _cache = MemoryCache.Default;
         private CacheItemPolicy _defaultPolicy = new CacheItemPolicy();

@@ -5,44 +5,46 @@ using System;
 
 namespace CachingDemo.Tests
 {
-    /*
     [TestClass]
     public class CacheTests
     {
         private MockRepository mockRepository;
 
-        private Mock<IRepository<TKey, T>> mockRepository;
+        private Mock<IRepository<string, string>> repoMock;
 
         [TestInitialize]
         public void TestInitialize()
         {
             this.mockRepository = new MockRepository(MockBehavior.Strict);
 
-            this.mockRepository = this.mockRepository.Create<IRepository<TKey, T>>();
+            repoMock = this.mockRepository.Create<IRepository<string, string>>();
         }
 
-        private Cache CreateCache()
+        private Cache<string, string> CreateCache()
         {
-            return new Cache(
-                this.mockRepository.Object,
-                TODO,
-                TODO,
-                TODO);
+            return new Cache<string, string>(
+                repoMock.Object,
+                ReadMode.ReadThrough,
+                WriteMode.WriteThrough);
         }
 
         [TestMethod]
         public void Create_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var cache = this.CreateCache();
-            T item = null;
+            var cache = CreateCache();
+            string item = "data";
+
+            // Repo.Create must be called once.
+            repoMock
+                .Setup(r => r.Create(It.IsAny<string>()))
+                .Returns("key from repo");
 
             // Act
             var result = cache.Create(
                 item);
 
             // Assert
-            Assert.Fail();
             this.mockRepository.VerifyAll();
         }
 
@@ -50,15 +52,19 @@ namespace CachingDemo.Tests
         public void Delete_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var cache = this.CreateCache();
-            TKey key = default(TKey);
+            var cache = CreateCache();
+            string key = "key";
+
+            // Repo.Delete must be called once.
+            repoMock
+                .Setup(r => r.Delete(It.IsAny<string>()))
+                .Returns(true);
 
             // Act
             var result = cache.Delete(
                 key);
 
             // Assert
-            Assert.Fail();
             this.mockRepository.VerifyAll();
         }
 
@@ -67,14 +73,19 @@ namespace CachingDemo.Tests
         {
             // Arrange
             var cache = this.CreateCache();
-            TKey key = default(TKey);
+            string key = "key";
+
+            // Repo.Read must be called once.
+            repoMock
+                .Setup(r => r.Read(It.IsAny<string>()))
+                .Returns("from repo");
 
             // Act
             var result = cache.Read(
                 key);
 
             // Assert
-            Assert.Fail();
+            Assert.AreEqual("from repo", result);
             this.mockRepository.VerifyAll();
         }
 
@@ -83,8 +94,13 @@ namespace CachingDemo.Tests
         {
             // Arrange
             var cache = this.CreateCache();
-            TKey key = default(TKey);
-            T item = null;
+            string key = "key";
+            string item = "data";
+
+            // Repo.Update must be called once.
+            repoMock
+                .Setup(r => r.Update(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(true);
 
             // Act
             var result = cache.Update(
@@ -92,9 +108,8 @@ namespace CachingDemo.Tests
                 item);
 
             // Assert
-            Assert.Fail();
+            Assert.IsTrue(result);
             this.mockRepository.VerifyAll();
         }
     }
-    */
 }

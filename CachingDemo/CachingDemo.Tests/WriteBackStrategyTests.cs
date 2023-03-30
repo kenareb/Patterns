@@ -1,20 +1,23 @@
 ﻿namespace CachingDemo.Tests
 {
-    /*
     [TestClass]
     public class WriteBackStrategyTests
     {
         private MockRepository mockRepository;
+        private Mock<ObjectCache> cacheMock;
+        private Mock<IRepository<string, string>> repoMock;
 
         [TestInitialize]
         public void TestInitialize()
         {
             this.mockRepository = new MockRepository(MockBehavior.Strict);
+            cacheMock = mockRepository.Create<ObjectCache>();
+            repoMock = mockRepository.Create<IRepository<string, string>>();
         }
 
-        private WriteBackStrategy CreateWriteBackStrategy()
+        private WriteBackStrategy<string, string> CreateWriteBackStrategy()
         {
-            return new WriteBackStrategy();
+            return new WriteBackStrategy<string, string>();
         }
 
         [TestMethod]
@@ -22,20 +25,33 @@
         {
             // Arrange
             var writeBackStrategy = this.CreateWriteBackStrategy();
-            T item = null;
-            ObjectCache cache = null;
+            string item = "data";
             CacheItemPolicy policy = null;
-            IRepository repo = null;
+
+            repoMock.Reset();
+            cacheMock.Reset();
+
+            // Repo.Create must be called once.
+            repoMock
+                .Setup(r => r.Create(It.IsAny<string>()))
+                .Returns("key from repo");
+
+            // Cache.Add must also be called once to store the data.
+            cacheMock
+                .Setup(c => c.Add(It.IsAny<CacheItem>(), It.IsAny<CacheItemPolicy>()))
+                .Returns(true);
 
             // Act
             var result = writeBackStrategy.Create(
                 item,
-                cache,
+                cacheMock.Object,
                 policy,
-                repo);
+                repoMock.Object);
+
+            // Wait 10 seconds, so that a baclground thread has time to finish.
+            Task.Delay(TimeSpan.FromSeconds(10)).GetAwaiter().GetResult();
 
             // Assert
-            Assert.Fail();
             this.mockRepository.VerifyAll();
         }
 
@@ -44,18 +60,32 @@
         {
             // Arrange
             var writeBackStrategy = this.CreateWriteBackStrategy();
-            TKey key = default(TKey);
-            ObjectCache cache = null;
-            IRepository repo = null;
+            string key = "key";
+            CacheItemPolicy policy = new CacheItemPolicy();
+
+            repoMock.Reset();
+            cacheMock.Reset();
+
+            // Repo.Delete must be called once.
+            repoMock
+                .Setup(r => r.Delete(It.IsAny<string>()))
+                .Returns(true);
+
+            // Cache.Remove must also be called once to store the data.
+            cacheMock
+                .Setup(c => c.Remove(It.IsAny<string>(), null))
+                .Returns(true);
 
             // Act
             var result = writeBackStrategy.Delete(
                 key,
-                cache,
-                repo);
+                cacheMock.Object,
+                repoMock.Object);
+
+            // Wait 10 seconds, so that a baclground thread has time to finish.
+            Task.Delay(TimeSpan.FromSeconds(10)).GetAwaiter().GetResult();
 
             // Assert
-            Assert.Fail();
             this.mockRepository.VerifyAll();
         }
 
@@ -64,24 +94,35 @@
         {
             // Arrange
             var writeBackStrategy = this.CreateWriteBackStrategy();
-            TKey key = default(TKey);
-            T item = null;
-            ObjectCache cache = null;
-            CacheItemPolicy policy = null;
-            IRepository repo = null;
+            string key = "key";
+            string item = "data";
+            CacheItemPolicy policy = new CacheItemPolicy();
+
+            repoMock.Reset();
+            cacheMock.Reset();
+
+            // Repo.Update must be called once.
+            repoMock
+                .Setup(r => r.Update(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(true);
+
+            // Cache.Set must also be called once to store the data.
+            cacheMock
+                .Setup(c => c.Set(It.IsAny<CacheItem>(), It.IsAny<CacheItemPolicy>()));
 
             // Act
             var result = writeBackStrategy.Write(
                 key,
                 item,
-                cache,
+                cacheMock.Object,
                 policy,
-                repo);
+                repoMock.Object);
+
+            // Wait 10 seconds, so that a baclground thread has time to finish.
+            Task.Delay(TimeSpan.FromSeconds(10)).GetAwaiter().GetResult();
 
             // Assert
-            Assert.Fail();
             this.mockRepository.VerifyAll();
         }
     }
-    */
 }
